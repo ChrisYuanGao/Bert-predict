@@ -29,5 +29,9 @@ python run.py --model ERNIE
 
 ## 4.参考的运行版本
 pandas == 1.5.2
+
+
 torch == 1.13.0
+
+
 numpy == 1.20.3
