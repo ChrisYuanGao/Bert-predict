@@ -10,5 +10,18 @@
 ## 2.更换数据
 数据存放在THUCNews/data文件夹下，分为train,test,dev,class,predict五个文件，其中class文件存放的是所预测的y的类别，根据其他文件的更改调整即可。其他文件要做修改或者更新时请注意将格式调整为"title\ttopic"的形式。
 
+## 3.运行方式
+（1）基础的bert
+
+python run.py --model bert
+
+（2）bert + 其它（eg bert_CNN）
+
+python run.py --model bert_CNN
+
+（3）ERNIE
+
+python run.py --model ERNIE
+
 ## 3.模型保存与预测结果
 训练好的模型保存在THUCNews/save_dict文件夹下，预测结果存放在主目录下的predict.txt文件内
