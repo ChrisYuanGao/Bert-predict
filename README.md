@@ -25,3 +25,9 @@ python run.py --model ERNIE
 
 ## 3.模型保存与预测结果
 训练好的模型保存在THUCNews/save_dict文件夹下，预测结果存放在主目录下的predict.txt文件内
+
+
+## 4.参考的运行版本
+pandas == 1.5.2
+torch == 1.13.0
+numpy == 1.20.3
