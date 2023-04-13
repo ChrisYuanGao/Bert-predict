@@ -1,7 +1,7 @@
 # Bert-predict
 
 ## 1.更换模型
-将bert_pretrain文件夹下的所有文件替换为下述百度云链接中的文件。
+将bert_pretrain文件夹下存放下述百度云链接中的文件。
 
 
 链接：https://pan.baidu.com/s/1KHlQHJ1S68HV2HLlMabKwA?pwd=rcwk 
