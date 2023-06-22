@@ -2,6 +2,7 @@
 import time
 import torch
 import numpy as np
+import pandas as pd
 from train_eval import train, init_network, predict
 from importlib import import_module
 import argparse
@@ -39,3 +40,8 @@ if __name__ == '__main__':
 
     # predict
     predict(config,model,predict_iter)
+    pure_text = pd.read_csv("THUCNews/data/predict.txt",sep='\t',header=None)
+    pure_text = pure_text.iloc[:,0]
+    label = pd.read_csv("prediction_result.txt",dtype=int)
+    result = pd.concat([pure_text,label.astype(int)],axis=1)
+    result.to_csv("prediction_result.txt",index=False,header=None,sep='\t')

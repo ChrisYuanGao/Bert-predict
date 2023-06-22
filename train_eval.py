@@ -132,7 +132,7 @@ def predict(config,model,to_predict):
             predic = torch.max(outputs.data, 1)[1].cpu().numpy()
             predict_result = np.append(predict_result, predic)
             labels_result = np.append(labels_all, labels)
-            predict_result = pd.Series(predict_result)
-            predict_result.to_csv("prediction_result.txt",index = False)
+        predict_result = pd.DataFrame(predict_result)
+        predict_result.to_csv("prediction_result.txt",index = False,header=None)
     return predict_result
 
