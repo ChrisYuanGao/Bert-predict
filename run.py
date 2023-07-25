@@ -7,6 +7,7 @@ from train_eval import train, init_network, predict
 from importlib import import_module
 import argparse
 from utils import build_dataset, build_iterator, get_time_dif
+import os
 
 parser = argparse.ArgumentParser(description='Chinese Text Classification')
 parser.add_argument('--model', type=str, required=True, help='choose a model: Bert, ERNIE')
@@ -34,14 +35,24 @@ if __name__ == '__main__':
     time_dif = get_time_dif(start_time)
     print("Time usage:", time_dif)
 
-    # train
-    model = x.Model(config).to(config.device)
-    train(config, model, train_iter, dev_iter, test_iter)
+    if os.path.exists("finetune_model/v1.pkl"):
+        print('fine-tuned model have exist, loading existing model:')
+        model = torch.load("finetune_model/v1.pkl")
+        print("successfully load the model")
+    
+    else:
+        # train
+        model = x.Model(config).to(config.device)
+        train(config, model, train_iter, dev_iter, test_iter)
+        print("Fine-tune finish! Now saving model...")
+        torch.save(model,"finetune_model/v1.pkl")
 
     # predict
+    print("start to predict")
     predict(config,model,predict_iter)
     pure_text = pd.read_csv("THUCNews/data/predict.txt",sep='\t',header=None)
     pure_text = pure_text.iloc[:,0]
     label = pd.read_csv("prediction_result.txt",dtype=int)
     result = pd.concat([pure_text,label.astype(int)],axis=1)
     result.to_csv("prediction_result.txt",index=False,header=None,sep='\t')
+    print("finish!")
